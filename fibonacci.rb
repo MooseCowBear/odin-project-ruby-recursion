@@ -1,8 +1,8 @@
-#take int >= 0
+#takes int >= 0. 0 returns the empty []. i.e. zero fibonacci numbers.
 
 def fibs(n)
   result = [0, 1]
-  return result[0...n] if n < 3
+  return result[0...n] if n < 3 #treating the n = 1 as the first fibonacci number. 
 
   2.upto(n - 1) do |i|
     result << result[i - 1] + result[i - 2]
