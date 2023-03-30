@@ -21,3 +21,28 @@ pp merge_sort([1, 2, 3, 4]) # => [1, 2, 3, 4]
 pp merge_sort([5, 4, 3, 2, 1]) # => [1, 2, 3, 4, 5]
 pp merge_sort([1]) # => [1]
 pp merge_sort([]) # => []
+
+def merge_sort_iter(arr)
+  #an iterative implementation, using two stacks
+  return arr if arr.length <= 1
+  curr = []
+  other = []
+  arr.each { |elem| curr << [elem] }
+  while curr.length + other.length > 1 
+    while curr.length > 1
+      r = curr.pop
+      l = curr.pop
+      other << merge(l, r)
+    end
+    if curr.length > 0
+      other << curr.pop
+    end
+    curr, other = other, curr
+  end
+  result = curr.length > 0 ? curr.pop : other.pop
+end
+
+pp merge_sort_iter([1, 2, 3, 4]) # => [1, 2, 3, 4]
+pp merge_sort_iter([5, 4, 3, 2, 1]) # => [1, 2, 3, 4, 5]
+pp merge_sort_iter([1]) # => [1]
+pp merge_sort_iter([]) # => []
